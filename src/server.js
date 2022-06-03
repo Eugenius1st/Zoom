@@ -19,8 +19,13 @@ const handleListen = () => console.log(`Listening on ws://localhost:3000`);
 
 const server = http.createServer(app);
 // express application 으로부터 서버 만들기
+
 const wss = new WebSocketServer({ server });
 // 새로운 WebSocket Server 만들기
 //여기서 하고 있는 것은 같은 서버에서 http, sebSocket 둘 다 작동 시키는 것이다
+function handleConnection(socket) {
+    console.log(socket);
+}
+wss.on("connection", handleConnection);
 
 server.listen(3000, handleListen);
